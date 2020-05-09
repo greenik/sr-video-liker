@@ -5,7 +5,7 @@ import Video from '../video/Video';
 
 class VideoList extends React.Component {
     render() {
-        const { videos=[] } = this.props;
+        const { videos } = this.props;
         return (
             <div className="video-list">
                 <h2 className="video-list__header">My favourite videos</h2>
@@ -16,5 +16,9 @@ class VideoList extends React.Component {
         );
     }
 }
+
+VideoList.defaultProps = {
+    videos: []
+};
 
 export default VideoList;

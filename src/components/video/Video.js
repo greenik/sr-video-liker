@@ -23,4 +23,13 @@ class Video extends React.Component {
         );
     }
 }
+
+Video.defaultProps = {
+    data: {
+        title: '',
+        description: '',
+        video_url: null
+    }
+};
+
 export default Video;

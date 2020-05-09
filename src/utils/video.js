@@ -1,4 +1,5 @@
 function getVideoProviderFromUrl(url) {
+    if (!url) return null;
     if (url.includes('youtu')) return 'youtube';
     if (url.includes('vimeo')) return 'vimeo';
     return null;

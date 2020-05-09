@@ -1,6 +1,7 @@
 import React from 'react'
 import Plyr from 'plyr'
 import 'plyr/dist/plyr.css'
+
 import './VideoPlayer.scss'
 
 class VideoPlayer extends React.Component {
