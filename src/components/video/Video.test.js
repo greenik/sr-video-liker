@@ -1,12 +1,12 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import Video from './Video';
+import { shallow } from "enzyme";
+import React from "react";
 
-jest.mock('plyr-react');
+import Video from "./Video";
 
-test('renders Video component', () => {
-    const video = { id: 1, title: 'Test Video', description: 'Test description', video_url: 'http://youtube.com/blabla' };
-    const { getByText } = render(<Video key={`video-${video.id}`} data={video} />);
-    const linkElement = getByText(/test video/i);
-    expect(linkElement).toBeInTheDocument();
+describe("<Video />", () => {
+    it("should render", () => {
+        const wrapper = shallow(<Video />);
+
+        expect(wrapper).toBeDefined();
+    });
 });

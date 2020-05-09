@@ -1,9 +1,12 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import { shallow } from "enzyme";
+import React from "react";
 
-test('renders header', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/video liker/i);
-  expect(linkElement).toBeInTheDocument();
+import App from "./App";
+
+describe("<App />", () => {
+  it("should render", () => {
+    const wrapper = shallow(<App />);
+
+    expect(wrapper).toBeDefined();
+  });
 });

@@ -1,11 +1,11 @@
 import { shallow } from "enzyme";
 import React from "react";
 
-import VideoList from "./VideoList";
+import VideoPlayer from "./VideoPlayer";
 
-describe("<VideoList />", () => {
+describe("<VideoPlayer />", () => {
     it("should render", () => {
-        const wrapper = shallow(<VideoList />);
+        const wrapper = shallow(<VideoPlayer />);
 
         expect(wrapper).toBeDefined();
     });
