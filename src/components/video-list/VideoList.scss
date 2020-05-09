@@ -1,7 +1,18 @@
 @import 'src/styles/_variables';
 
 .video-list {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    &__header {
+        text-align: center;
+        text-transform: uppercase;
+        color: white;
+    }
+    &__container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 10px 50px;
+    }
+    .video {
+        margin: 10px 50px;
+    }
 }

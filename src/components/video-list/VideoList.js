@@ -8,7 +8,10 @@ class VideoList extends React.Component {
         const { videos=[] } = this.props;
         return (
             <div className="video-list">
-                {videos.map((video) => <Video key={`video-${video.id}`} data={video}/>)}
+                <h2 className="video-list__header">My favourite videos</h2>
+                <div className="video-list__container">
+                    {videos.map((video) => <Video key={`video-${video.id}`} data={video}/>)}
+                </div>
             </div>
         );
     }
