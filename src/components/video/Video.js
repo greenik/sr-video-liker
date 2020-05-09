@@ -1,7 +1,7 @@
 import React from 'react';
 import { PlyrComponent } from 'plyr-react';
 
-import './Video.css';
+import './Video.scss';
 import { getIdFromUrl } from '../../utils/youtube';
 
 

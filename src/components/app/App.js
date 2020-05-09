@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './App.css';
+import './App.scss';
 import VideoList from '../video-list/VideoList';
 
 class App extends React.Component {

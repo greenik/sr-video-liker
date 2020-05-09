@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './VideoList.css';
+import './VideoList.scss';
 import Video from '../video/Video';
 
 class VideoList extends React.Component {

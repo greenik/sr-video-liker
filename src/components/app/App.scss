@@ -1,0 +1,16 @@
+@import 'src/styles/_global';
+@import 'src/styles/_variables';
+
+.App {
+    &__header {
+        background-color: $primary-color;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+    &__container {
+        padding: 16px;
+    }
+}
