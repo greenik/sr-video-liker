@@ -2,19 +2,20 @@ import React from 'react';
 import { PlyrComponent } from 'plyr-react';
 
 import './Video.scss';
-import { getIdFromUrl } from '../../utils/youtube';
+import { getIdFromUrl, getVideoProviderFromUrl } from '../../utils/video';
 
 
 class Video extends React.Component {
     render() {
         const { data } = this.props;
         const videoId = getIdFromUrl(data.video_url);
+        const videoProvider = getVideoProviderFromUrl(data.video_url);
         const plyrObj = {
             type: 'video',
             sources: [
                 {
                     src: videoId,
-                    provider: 'youtube',
+                    provider: videoProvider,
                 },
             ],
         };
