@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './VideoList.scss';
-import Video from '../video/Video';
+import Video from '../Video/Video';
 
 class VideoList extends React.Component {
     render() {

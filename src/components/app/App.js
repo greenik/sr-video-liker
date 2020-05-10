@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './App.scss';
-import VideoList from '../video-list/VideoList';
+import VideoList from '../VideoList/VideoList';
 
 class App extends React.Component {
     constructor(props) {
