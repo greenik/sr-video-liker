@@ -19,4 +19,21 @@ function getIdFromUrl(url) {
     return null;
 }
 
-export { getVideoProviderFromUrl, getIdFromUrl };
+async function getThumbnailFromUrl(url) {
+    const provider = getVideoProviderFromUrl(url);
+    const videoId = getIdFromUrl(url);
+    let thumbnailUrl;
+    if (provider === 'youtube') {
+        thumbnailUrl = `http://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+    }
+    if (provider === 'vimeo') {
+        await fetch(`https://vimeo.com/api/oembed.json?url=${url}`)
+            .then(response => response.json())
+            .then(response => {
+                thumbnailUrl = response.thumbnail_url;
+            });
+    }
+    return thumbnailUrl;
+}
+
+export { getVideoProviderFromUrl, getIdFromUrl, getThumbnailFromUrl };

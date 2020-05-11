@@ -1,16 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './VideoList.scss';
 import Video from '../Video/Video';
 
 class VideoList extends React.Component {
     render() {
-        const { videos } = this.props;
+        const { videos, onPlayVideo, activeVideo } = this.props;
         return (
             <div className="video-list">
-                <h2 className="video-list__header">My favourite videos</h2>
                 <div className="video-list__container">
-                    {videos.map((video) => <Video key={`video-${video.id}`} data={video}/>)}
+                    {videos.map((video) => <Video key={`video-${video.id}`} isActive={video.id === activeVideo.id} onPlayVideo={onPlayVideo} data={video}/>)}
                 </div>
             </div>
         );
@@ -18,7 +18,23 @@ class VideoList extends React.Component {
 }
 
 VideoList.defaultProps = {
-    videos: []
+    videos: [],
+    activeVideo: {},
+    onPlayVideo: () => {}
+};
+
+VideoList.propTypes = {
+    videos: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        video_url: PropTypes.string
+    })),
+    activeVideo: PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+        video_url: PropTypes.string
+    }),
+    onPlayVideo: PropTypes.func
 };
 
 export default VideoList;

@@ -2,6 +2,7 @@ import React from 'react';
 
 import './App.scss';
 import VideoList from '../VideoList/VideoList';
+import VideoPlayer from '../VideoPlayer/VideoPlayer';
 
 class App extends React.Component {
     constructor(props) {
@@ -9,22 +10,30 @@ class App extends React.Component {
 
         this.state = {
             videos: [],
+            activeVideo: null
         };
     }
 
     componentDidMount() {
         fetch('database.json')
             .then(response => response.json())
-            .then(videos => this.setState({ videos }));
+            .then(videos => this.setState({ videos, activeVideo: videos[0] }));
+    }
+
+    playVideo = (video) => {
+        this.setState({activeVideo: video});
     }
 
     render() {
-        const { videos } = this.state;
+        const { videos, activeVideo } = this.state;
         return (
             <div className="App">
                 <header className="App__header">Video Liker</header>
-                <div className="App__container">
-                    <VideoList videos={videos} />
+                <div className="App__player">
+                    <VideoPlayer videoUrl={activeVideo?.video_url} />
+                </div>
+                <div className="App__videos">
+                    <VideoList onPlayVideo={this.playVideo} activeVideo={activeVideo} videos={videos} />
                 </div>
             </div>
         );

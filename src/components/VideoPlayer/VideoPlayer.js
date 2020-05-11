@@ -3,29 +3,62 @@ import Plyr from 'plyr'
 import 'plyr/dist/plyr.css'
 
 import './VideoPlayer.scss'
+import { getIdFromUrl, getVideoProviderFromUrl } from '../../utils/video';
 
 class VideoPlayer extends React.Component {
+    player = null;
+
     componentDidMount() {
-        this.player = new Plyr('.js-plyr', this.props.options);
+        this.initPlayer();
+    }
+
+    initPlayer() {
+        const { videoUrl } = this.props;
+        const videoId = getIdFromUrl(videoUrl);
+        const videoProvider = getVideoProviderFromUrl(videoUrl);
+        if(videoId) {
+            this.player = new Plyr('.js-plyr', this.props.options);
+            this.player.source = {
+                type: 'video',
+                sources: [{
+                    src: videoId,
+                    provider: videoProvider
+                }]
+            };
+        }
+    }
+
+    changeVideo(videoUrl) {
+        const videoId = getIdFromUrl(videoUrl);
+        const videoProvider = getVideoProviderFromUrl(videoUrl);
         this.player.source = {
             type: 'video',
             sources: [
                 {
-                    src: this.props.videoId,
-                    provider: this.props.videoProvider,
+                    src: videoId,
+                    provider: videoProvider
                 },
             ],
         };
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.videoUrl !== this.props.videoUrl) {
+            if(this.player) {
+                this.changeVideo(this.props.videoUrl);
+            } else {
+                this.initPlayer();
+            }
+        }
+    }
+
     componentWillUnmount() {
-        this.player.destroy()
+        this.player.destroy();
     }
 
     render() {
         return (
-            <video className="js-plyr plyr">
-            </video>
+            <video className="js-plyr plyr"></video>
         )
     }
 }
@@ -70,10 +103,7 @@ VideoPlayer.defaultProps = {
             loop: 'Loop',
         },
     },
-    sources: {
-        type: 'video',
-        sources: [],
-    }
+    videoUrl: ''
 }
 
 export default VideoPlayer;

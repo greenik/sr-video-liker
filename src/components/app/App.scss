@@ -10,7 +10,15 @@
         padding: 16px;
         margin-bottom: 16px;
     }
-    &__container {
-        padding: 16px;
+    &__player {
+        display: inline-block;
+        width: 70%;
+        padding: 0 16px;
+    }
+    &__videos {
+        padding: 0 16px;
+        display: inline-block;
+        width: 26%;
+        vertical-align: top;
     }
 }
