@@ -2,7 +2,7 @@
   "name": "video-liker",
   "version": "0.2.0",
   "private": false,
-  "homepage": "https://greenik.github.io/sr-video-liker",
+  "homepage": ".",
   "dependencies": {
     "gh-pages": "^2.2.0",
     "node-sass": "^4.14.1",

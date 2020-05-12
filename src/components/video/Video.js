@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Video.scss';
+import PlayButton from './play-btn.png';
 import { getThumbnailFromUrl } from '../../utils/video';
 
 
@@ -18,9 +19,15 @@ class Video extends React.Component {
     render() {
         const { data, onPlayVideo, isActive } = this.props;
         const { videoThumbnail } = this.state;
+
+        const overlayStyle = {
+            backgroundImage: `url(${PlayButton})`
+        };
+
         return (
             <div className={`video ${isActive ? 'active' : ''}`} onClick={() => onPlayVideo(data)}>
                 <div className="video__thumbnail">
+                    <div style={overlayStyle} className="video__overlay"></div>
                     <img src={videoThumbnail} alt="Thumbnail" />
                 </div>
                 <div className="video__info">

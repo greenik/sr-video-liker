@@ -2,19 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './VideoList.scss';
-import Video from '../Video/Video';
+import Video from '../Video';
 
-class VideoList extends React.Component {
-    render() {
-        const { videos, onPlayVideo, activeVideo } = this.props;
-        return (
-            <div className="video-list">
-                <div className="video-list__container">
-                    {videos.map((video) => <Video key={`video-${video.id}`} isActive={video.id === activeVideo.id} onPlayVideo={onPlayVideo} data={video}/>)}
-                </div>
+function VideoList({ videos, onPlayVideo, activeVideo }) {
+    return (
+        <div className="video-list">
+            <div className="video-list__container">
+                {videos.map((video) => <Video key={`video-${video.id}`} isActive={video.id === activeVideo.id} onPlayVideo={onPlayVideo} data={video}/>)}
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 VideoList.defaultProps = {

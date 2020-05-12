@@ -1,8 +1,11 @@
 import React from 'react';
 
 import './App.scss';
-import VideoList from '../VideoList/VideoList';
-import VideoPlayer from '../VideoPlayer/VideoPlayer';
+import Header from '../Header';
+import Content from '../Content';
+import VideoList from '../VideoList';
+import VideoPlayer from '../VideoPlayer';
+import Footer from '../Footer/Footer';
 
 class App extends React.Component {
     constructor(props) {
@@ -12,6 +15,8 @@ class App extends React.Component {
             videos: [],
             activeVideo: null
         };
+
+        this.playVideo = this.playVideo.bind(this);
     }
 
     componentDidMount() {
@@ -20,7 +25,7 @@ class App extends React.Component {
             .then(videos => this.setState({ videos, activeVideo: videos[0] }));
     }
 
-    playVideo = (video) => {
+    playVideo(video) {
         this.setState({activeVideo: video});
     }
 
@@ -28,13 +33,16 @@ class App extends React.Component {
         const { videos, activeVideo } = this.state;
         return (
             <div className="App">
-                <header className="App__header">Video Liker</header>
-                <div className="App__player">
-                    <VideoPlayer videoUrl={activeVideo?.video_url} />
-                </div>
-                <div className="App__videos">
-                    <VideoList onPlayVideo={this.playVideo} activeVideo={activeVideo} videos={videos} />
-                </div>
+                <Header />
+                <Content>
+                    <div className="App__player">
+                        <VideoPlayer videoUrl={activeVideo?.video_url} />
+                    </div>
+                    <div className="App__videos">
+                        <VideoList onPlayVideo={this.playVideo} activeVideo={activeVideo} videos={videos} />
+                    </div>
+                </Content>
+                <Footer />
             </div>
         );
     }

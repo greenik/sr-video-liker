@@ -29,21 +29,25 @@
         color: rgba(255, 255, 255, 0.7);
     }
 
+    &__overlay {
+        display: none;
+        width: 100%;
+        height: 225px;
+        top: 0;
+        left: 0;
+        position: absolute;
+        background-color: black;
+        opacity: 0.5;
+        border-radius: 8px 8px 0 0;
+        background-size: 50px 50px;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
     &.active,
     &:hover {
-        .video__thumbnail:after {
-            content: '';
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            position: absolute;
-            background-color: black;
-            opacity: 0.5;
-            background-image: url('https://wptf.com/wp-content/uploads/2014/05/play-button.png');
-            background-size: 50px 50px;
-            background-position: center;
-            background-repeat: no-repeat;
+        .video__overlay {
+            display: block;
         }
     }
 }
