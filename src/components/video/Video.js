@@ -15,7 +15,7 @@ function Video({ video, onPlayVideo, isActive }) {
             setVideoThumbnail(videoThumbnail);
         }
         fetchThumbnail();
-    })
+    }, [video])
 
     const overlayStyle = {
         backgroundImage: `url(${PlayButton})`
