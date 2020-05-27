@@ -2,7 +2,7 @@ import React from 'react';
 
 function Content(props) {
     return (
-        <div>{props.children}</div>
+        <div className="flex px-10">{props.children}</div>
     )
 }
 

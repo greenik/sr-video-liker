@@ -3,10 +3,14 @@
 html {
     font-family: 'Roboto', 'Helvetica', sans-serif;
     background-color: $bg-color;
+    overflow: hidden;
+    height: 100%;
 }
 
 body {
     margin: 0;
+    overflow: auto;
+    height: 100%;
 }
 
 h5 {

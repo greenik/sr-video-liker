@@ -7,7 +7,7 @@ import Video from '../Video';
 function VideoList({ videos, onPlayVideo, activeVideo }) {
     return (
         <div className="video-list">
-            <div className="video-list__container">
+            <div className="video-list__container overflow-auto">
                 {videos.map((video) => <Video key={`video-${video.id}`} isActive={video.id === activeVideo.id} onPlayVideo={onPlayVideo} data={video}/>)}
             </div>
         </div>

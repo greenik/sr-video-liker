@@ -23,19 +23,18 @@ class Video extends React.Component {
         const overlayStyle = {
             backgroundImage: `url(${PlayButton})`
         };
-
-        return (
-            <div className={`video ${isActive ? 'active' : ''}`} onClick={() => onPlayVideo(data)}>
-                <div className="video__thumbnail">
-                    <div style={overlayStyle} className="video__overlay"></div>
-                    <img src={videoThumbnail} alt="Thumbnail" />
+        return(
+            <div className={`video ${isActive ? 'active' : ''} bg-blue-900 bg-opacity-50 rounded overflow-hidden mx-auto mb-10 cursor-pointer w-2/3`} onClick={(e) => onPlayVideo(e, data)}>
+                <div className="video__thumbnail relative h-full w-full">
+                    <div style={overlayStyle} className="video__overlay h-full w-full absolute opacity-50 bg-black"></div>
+                    <img className="video__image w-full" src={videoThumbnail} alt={data.title} />
                 </div>
-                <div className="video__info">
-                    <h5 className="video__title">{data.title}</h5>
-                    <p className="video__description">{data.description}</p>
+                <div className="video__info px-6 py-4">
+                    <div className="video__title text-white font-bold text-xl mb-2">{data.title}</div>
+                    <p className="video__description text-white text-opacity-75 text-justify text-base">{data.description}</p>
                 </div>
             </div>
-        );
+        )
     }
 }
 

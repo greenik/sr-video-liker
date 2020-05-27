@@ -25,7 +25,8 @@ class App extends React.Component {
             .then(videos => this.setState({ videos, activeVideo: videos[0] }));
     }
 
-    playVideo(video) {
+    playVideo(e, video) {
+        e.preventDefault();
         this.setState({activeVideo: video});
     }
 
@@ -35,10 +36,10 @@ class App extends React.Component {
             <div className="App">
                 <Header />
                 <Content>
-                    <div className="App__player">
+                    <div className="App__player w-4/6">
                         <VideoPlayer videoUrl={activeVideo?.video_url} />
                     </div>
-                    <div className="App__videos">
+                    <div className="App__videos w-2/6">
                         <VideoList onPlayVideo={this.playVideo} activeVideo={activeVideo} videos={videos} />
                     </div>
                 </Content>
