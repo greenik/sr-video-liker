@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import './Video.scss';
@@ -6,36 +6,33 @@ import PlayButton from './play-btn.png';
 import { getThumbnailFromUrl } from '../../utils/video';
 
 
-class Video extends React.Component {
-    state = {
-        videoThumbnail: null
-    }
+function Video({ video, onPlayVideo, isActive }) {
+    const [videoThumbnail, setVideoThumbnail] = useState(null);
 
-    async componentDidMount() {
-        const { data } = this.props;
-        const videoThumbnail = await getThumbnailFromUrl(data.video_url);
-        this.setState({ videoThumbnail });
-    }
-    render() {
-        const { data, onPlayVideo, isActive } = this.props;
-        const { videoThumbnail } = this.state;
+    useEffect(() => {
+        async function fetchThumbnail() {
+            const videoThumbnail = await getThumbnailFromUrl(video.video_url);
+            setVideoThumbnail(videoThumbnail);
+        }
+        fetchThumbnail();
+    })
 
-        const overlayStyle = {
-            backgroundImage: `url(${PlayButton})`
-        };
-        return(
-            <div className={`video ${isActive ? 'active' : ''} bg-blue-900 bg-opacity-50 rounded overflow-hidden mx-auto mb-10 cursor-pointer w-2/3`} onClick={(e) => onPlayVideo(e, data)}>
-                <div className="video__thumbnail relative h-full w-full">
-                    <div style={overlayStyle} className="video__overlay h-full w-full absolute opacity-50 bg-black"></div>
-                    <img className="video__image w-full" src={videoThumbnail} alt={data.title} />
-                </div>
-                <div className="video__info px-6 py-4">
-                    <div className="video__title text-white font-bold text-xl mb-2">{data.title}</div>
-                    <p className="video__description text-white text-opacity-75 text-justify text-base">{data.description}</p>
-                </div>
+    const overlayStyle = {
+        backgroundImage: `url(${PlayButton})`
+    };
+
+    return(
+        <div className={`video ${isActive ? 'active' : ''} bg-blue-900 bg-opacity-50 rounded overflow-hidden mx-auto mb-10 cursor-pointer w-2/3`} onClick={(e) => onPlayVideo(e, video)}>
+            <div className="video__thumbnail relative h-full w-full">
+                <div style={overlayStyle} className="video__overlay h-full w-full absolute opacity-50 bg-black"></div>
+                <img className="video__image w-full" src={videoThumbnail} alt={video.title} />
             </div>
-        )
-    }
+            <div className="video__info px-6 py-4">
+                <div className="video__title text-white font-bold text-xl mb-2">{video.title}</div>
+                <p className="video__description text-white text-opacity-75 text-justify text-base">{video.description}</p>
+            </div>
+        </div>
+    )
 }
 
 Video.defaultProps = {

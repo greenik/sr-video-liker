@@ -1,4 +1,7 @@
 function getVideoProviderFromUrl(url) {
+    if (!url) {
+        return null;
+    }
     if (url.includes('youtu')) {
         return 'youtube';
     }
@@ -9,6 +12,9 @@ function getVideoProviderFromUrl(url) {
 }
 
 function getIdFromUrl(url) {
+    if (!url) {
+        return null;
+    }
     const videoProvider = getVideoProviderFromUrl(url);
     if (videoProvider === 'youtube') {
         const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
@@ -23,6 +29,9 @@ function getIdFromUrl(url) {
 }
 
 async function getThumbnailFromUrl(url) {
+    if (!url) {
+        return null;
+    }
     const provider = getVideoProviderFromUrl(url);
     const videoId = getIdFromUrl(url);
     let thumbnailUrl;
