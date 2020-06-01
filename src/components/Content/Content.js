@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Content(props) {
+function Content({ children }) {
     return (
-        <div className="flex px-10">{props.children}</div>
+        <div className="content container mx-auto py-4">{children}</div>
     )
 }
 

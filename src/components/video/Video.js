@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './Video.scss';
 import PlayButton from './play-btn.png';
 import { getThumbnailFromUrl } from '../../utils/video';
 
+const trimText = (text, length) => {
+    const trimmedString = text.length > length ? text.substring(0, length - 3) + "..." : text.substring(0, length);
+    return trimmedString;
+}
 
-function Video({ video, onPlayVideo, isActive }) {
+function Video({ video }) {
     const [videoThumbnail, setVideoThumbnail] = useState(null);
 
     useEffect(() => {
@@ -22,37 +27,33 @@ function Video({ video, onPlayVideo, isActive }) {
     };
 
     return(
-        <div className={`video ${isActive ? 'active' : ''} bg-blue-900 bg-opacity-50 rounded overflow-hidden mx-auto mb-10 cursor-pointer w-2/3`} onClick={(e) => onPlayVideo(e, video)}>
-            <div className="video__thumbnail relative h-full w-full">
+        <Link className="video bg-blue-900 bg-opacity-50 rounded cursor-pointer" to={`/video/${video.id}`}>
+            <div className="video__thumbnail relative w-full">
                 <div style={overlayStyle} className="video__overlay h-full w-full absolute opacity-50 bg-black"></div>
                 <img className="video__image w-full" src={videoThumbnail} alt={video.title} />
             </div>
             <div className="video__info px-6 py-4">
-                <div className="video__title text-white font-bold text-xl mb-2">{video.title}</div>
-                <p className="video__description text-white text-opacity-75 text-justify text-base">{video.description}</p>
+                <span className="video__title text-white text-center font-bold text-l mb-2">{video.title}</span>
+                <p className="text-white">{trimText(video.description, 50)}</p>
             </div>
-        </div>
+        </Link>
     )
 }
 
 Video.defaultProps = {
-    data: {
+    video: {
         title: '',
         description: '',
         video_url: ''
-    },
-    isActive: false,
-    onPlayVideo: () => {}
+    }
 };
 
 Video.propTypes = {
-    data: PropTypes.shape({
+    video: PropTypes.shape({
         title: PropTypes.string,
         description: PropTypes.string,
         video_url: PropTypes.string
-    }),
-    isActive: PropTypes.bool,
-    onPlayVideo: PropTypes.func
+    })
 };
 
 

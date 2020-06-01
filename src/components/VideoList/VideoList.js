@@ -4,20 +4,16 @@ import PropTypes from 'prop-types';
 import './VideoList.scss';
 import Video from '../Video';
 
-function VideoList({ videos, onPlayVideo, activeVideo }) {
+function VideoList({ videos }) {
     return (
-        <div className="video-list">
-            <div className="video-list__container overflow-auto">
-                {videos.map((video) => <Video key={`video-${video.id}`} isActive={video.id === activeVideo.id} onPlayVideo={onPlayVideo} video={video}/>)}
-            </div>
+        <div className="video-list grid grid-cols-1 lg:grid-cols-4 gap-4">
+            {videos.map((video) => <Video key={`video-${video.id}`} video={video}/>)}
         </div>
     );
 }
 
 VideoList.defaultProps = {
-    videos: [],
-    activeVideo: {},
-    onPlayVideo: () => {}
+    videos: []
 };
 
 VideoList.propTypes = {
@@ -25,13 +21,7 @@ VideoList.propTypes = {
         title: PropTypes.string,
         description: PropTypes.string,
         video_url: PropTypes.string
-    })),
-    activeVideo: PropTypes.shape({
-        title: PropTypes.string,
-        description: PropTypes.string,
-        video_url: PropTypes.string
-    }),
-    onPlayVideo: PropTypes.func
+    }))
 };
 
 export default VideoList;
